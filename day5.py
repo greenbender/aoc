@@ -8,24 +8,11 @@ polymer = map(ord, sys.stdin.read().strip())
 
 
 def collapse(polymer):
-    i = 0
     collapsed = []
-
-    while True:
-        
-        # pop reacting units
+    for unit in polymer:
+        collapsed.append(unit)
         if len(collapsed) > 1 and collapsed[-2] ^ collapsed[-1] == 0x20:
             collapsed[-2:] = []
-
-        # push a unit
-        elif i < len(polymer):
-            collapsed.append(polymer[i])
-            i += 1
-
-        # nothing left to pop or push, we are done
-        else:
-            break
-
     return collapsed
 
 
