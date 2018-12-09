@@ -51,14 +51,14 @@ static long highest_score(int players, long last) {
     long *score = calloc(players, sizeof(*score));
 
     /* allocate all marbles at once */
-    marble_t *marbles = malloc(last * sizeof(*marbles));
+    marble_t *marbles = malloc((last + 1) * sizeof(*marbles));
     marble_t *current = marbles;
 
     /* init first marble */
     current->prev = current->next = current;
     current->value = 0;
     
-    for (i = 1; i < last; i++) {
+    for (i = 1; i <= last; i++) {
         if (i % 23 == 0) {
             score[player] += i;
             current = anticlockwise(current, 7);
@@ -82,7 +82,7 @@ static long highest_score(int players, long last) {
 
 int main(int argc, char **argv) {
     int players = atoi(argv[1]);
-    long last = strtol(argv[2], NULL, 0) + 1;
+    long last = strtol(argv[2], NULL, 0);
     printf("%ld\n", highest_score(players, last));
     return 0;
 }
