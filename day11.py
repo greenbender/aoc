@@ -34,17 +34,17 @@ for y in range(301):
 def most_power(size):
     mp = None
     mx = my = 0
-    for y in range(1, 301 - size):
-        for x in range(1, 301 - size):
+    for y in range(0, 301 - size):
+        for x in range(0, 301 - size):
             power = \
-                table[y + size - 1][x + size - 1] + \
-                table[y - 1][x - 1] - \
-                table[y - 1][x + size - 1] - \
-                table[y + size - 1][x - 1]
+                table[y + size][x + size] + \
+                table[y][x] - \
+                table[y][x + size] - \
+                table[y + size][x]
             if mp is None or power > mp:
                 mp = power
-                mx = x
-                my = y
+                mx = x + 1
+                my = y + 1
     return mp, mx, my
 
 
@@ -58,6 +58,8 @@ mp = None
 mx = my = ms = 0
 for size in range(1, 301):
     p, x, y = most_power(size)
+    if p < 0:
+        break
     if mp is None or p > mp:
         mp = p
         mx = x
