@@ -5,24 +5,29 @@ import sys
 
 
 class Marble(object):
+
     def __init__(self, value):
         self.value = value
         self.next = self
         self.prev = self
+
     def anticlockwise(self, count):
         if not count:
             return self
         return self.prev.anticlockwise(count - 1)
+
     def clockwise(self, count):
         if not count:
             return self
         return self.next.clockwise(count - 1)
+
     def place(self, other):
         other.prev = self
         other.next = self.next
         self.next.prev = other
         self.next = other
         return other
+
     def pick(self):
         self.prev.next = self.next
         self.next.prev = self.prev

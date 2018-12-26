@@ -28,7 +28,7 @@ for y in range(top, bottom + 1):
                 count[nearest] = None
             elif value is not None:
                 count[nearest] = value + 1
-        
+
 
 # part 1
 print max([v for v in count.values() if v is not None])

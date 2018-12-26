@@ -25,6 +25,7 @@ class Straight(object):
 
 
 class Curve(Straight):
+
     def __init__(self, transform):
         self.transform = transform
 
@@ -38,9 +39,9 @@ class Curve(Straight):
 
 class Intersection(Straight):
     transforms = [
-        [0,-1,-1, 0],
-        [1, 0, 0, 1],
-        [0, 1, 1, 0],
+        [0, -1, -1,  0],
+        [1,  0,  0,  1],
+        [0,  1,  1,  0],
     ]
 
     def modify(self, cart):
@@ -54,10 +55,9 @@ class Intersection(Straight):
 
 # singletons
 straight = Straight()
-curve_bs = Curve([0,-1, 1, 0])
-curve_fs = Curve([0, 1,-1, 0])
+curve_bs = Curve([0, -1,  1,  0])
+curve_fs = Curve([0,  1, -1,  0])
 intersection = Intersection()
-
 
 
 class Track(object):

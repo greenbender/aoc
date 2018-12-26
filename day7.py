@@ -16,7 +16,7 @@ def instructions(pairs):
     return inst
 
 
-# part 1        
+# part 1
 path = []
 inst = instructions(pairs)
 while inst:
@@ -43,7 +43,7 @@ while inst:
             del working[done]
         for pending in inst.values():
             pending -= set(done)
-    
+
     # start working on pending steps
     for step in steps:
         if len(working) < 5:

@@ -39,4 +39,4 @@ while box_ids:
                 index = i
         if index >= 0:
             print test_id[:index] + test_id[index + 1:]
-            break 
+            break

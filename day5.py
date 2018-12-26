@@ -7,19 +7,19 @@ import sys
 polymer = map(ord, sys.stdin.read().strip())
 
 
-def collapse(polymer):
-    collapsed = []
+def react(polymer):
+    reactd = []
     for unit in polymer:
-        collapsed.append(unit)
-        if len(collapsed) > 1 and collapsed[-2] ^ collapsed[-1] == 0x20:
-            collapsed[-2:] = []
-    return collapsed
+        reactd.append(unit)
+        if len(reactd) > 1 and reactd[-2] ^ reactd[-1] == 0x20:
+            reactd[-2:] = []
+    return reactd
 
 
 # part 1
-print len(collapse(polymer))
+print len(react(polymer))
 
 
 # part 2
 types = set([v | 0x20 for v in polymer])
-print min([len(collapse([u for u in polymer if u | 0x20 != t])) for t in types])
+print min([len(react([u for u in polymer if u | 0x20 != t])) for t in types])
