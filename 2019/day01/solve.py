@@ -5,14 +5,12 @@ masses = map(int, sys.stdin)
 
 
 def fuel(mass):
-    return (mass / 3) - 2
+    return mass / 3 - 2
 
 
 def fuel_r(mass):
     f = fuel(mass)
-    if f <= 0:
-        return 0
-    return f + fuel_r(f)
+    return 0 if f <= 0 else f + fuel_r(f)
 
 
 def part1():
