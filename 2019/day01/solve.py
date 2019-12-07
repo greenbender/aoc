@@ -1,6 +1,9 @@
 import sys
 
 
+masses = map(int, sys.stdin)
+
+
 def fuel(mass):
     return (mass / 3) - 2
 
@@ -13,13 +16,13 @@ def fuel_r(mass):
 
 
 def part1():
-    print sum([fuel(int(l)) for l in sys.stdin])
+    print sum(map(fuel, masses))
 
 
 def part2():
-    print sum([fuel_r(int(l)) for l in sys.stdin])
+    print sum(map(fuel_r, masses))
 
 
-#part1()
+part1()
 part2()
     
