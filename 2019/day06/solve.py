@@ -1,21 +1,27 @@
 import sys
 
 
-class Node(object):
-    def __init__(self, name):
-        self.name = name
-        self.orbit = None
+orbits = [l.strip().split(')') for l in sys.stdin]
+
+
+class Body(object):
+
+    def __init__(self):
+        self.orbiting = None
+
     @property
     def orbits(self):
-        if self.orbit:
-            yield self.orbit
-            for o in self.orbit.orbits:
+        if self.orbiting:
+            yield self.orbiting
+            for o in self.orbiting.orbits:
                 yield o
+
     @property
     def count(self):
-        if self.orbit:
-            return 1 + self.orbit.count
+        if self.orbiting:
+            return 1 + self.orbiting.count
         return 0
+
     def common(self, other):
         for s in self.orbits:
             for o in other.orbits:
@@ -24,26 +30,20 @@ class Node(object):
         return None
 
 
-def get_nodes():
-    nodes = {}
-    for line in sys.stdin:
-        orbit, name = line.strip().split(')')
-        orbit = nodes.setdefault(orbit, Node(orbit))
-        name = nodes.setdefault(name, Node(name))
-        name.orbit = orbit
-    return nodes
-
-
-nodes = get_nodes()
+bodies = {}
+for orbiting, body in orbits:
+    orbiting = bodies.setdefault(orbiting, Body())
+    body = bodies.setdefault(body, Body())
+    body.orbiting = orbiting
 
 
 def part1():
-    print sum([n.count for n in nodes.values()])
+    print sum([b.count for b in bodies.values()])
 
 
 def part2():
-    you_o = nodes['YOU'].orbit
-    santa_o = nodes['SAN'].orbit
+    you_o = bodies['YOU'].orbiting
+    santa_o = bodies['SAN'].orbiting
     common_o = you_o.common(santa_o)
     if common_o:
         print santa_o.count + you_o.count - 2 * common_o.count
