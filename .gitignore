@@ -1,3 +1,4 @@
 .*.sw?
+*.pyc
 input.txt
 sample.txt
