@@ -10,19 +10,11 @@ for line in sys.stdin:
 
 
 def validate1(lower, upper, letter, pwd):
-    if lower <= pwd.count(letter) <= upper:
-        return True
-    return False
+    return lower <= pwd.count(letter) <= upper
 
 
 def validate2(lower, upper, letter, pwd):
-    if pwd[lower-1] == letter:
-        if pwd[upper-1] == letter:
-            return False
-        return True
-    elif pwd[upper-1] == letter:
-        return True
-    return False
+    return int(pwd[lower-1] == letter) ^ int(pwd[upper-1] == letter) == 1
 
 
 def part1():
