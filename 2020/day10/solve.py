@@ -27,7 +27,7 @@ def combos(s):
     Number of combinations with two nodes removed
     c2 = k(k - 1)/2
          
-    Total combinations with one or to nodes removed
+    Total combinations with one or two nodes removed
     c = c1 + c2
       = k + k(k - 1)/2
       = k(k + 1)/2
@@ -62,7 +62,8 @@ def part1():
 def part2():
     '''Break adapters into runs of sequential adapters, and the multiply the
     combinations for the sequential runs of adapters together to get the total
-    number of combinations'''
+    number of combinations
+    '''
     part, l = [], 0
     c = 1
     for a in adapters:
