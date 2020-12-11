@@ -2,7 +2,7 @@ import sys
 
 
 adapters = list(sorted(map(int, sys.stdin)))
-adapters.append(max(adapters) + 3)
+adapters.append(adapters[-1] + 3)
 
 
 def combos(s):
