@@ -32,4 +32,5 @@ def part2():
     print(c)
 
 
+part1()
 part2()
