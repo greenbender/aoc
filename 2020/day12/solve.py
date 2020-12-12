@@ -38,16 +38,14 @@ def part1():
             if d == 90:
                 dx, dy = L90[(dx, dy)]
             elif d == 180:
-                dx = -dx
-                dy = -dy
+                dx, dy = -dx, -dy
             elif d == 270:
                 dx, dy = R90[(dx, dy)]
         elif a == 'R':
             if d == 90:
                 dx, dy = R90[(dx, dy)]
             elif d == 180:
-                dx = -dx
-                dy = -dy
+                dx, dy = -dx, -dy
             elif d == 270:
                 dx, dy = L90[(dx, dy)]
         elif a == 'F':
