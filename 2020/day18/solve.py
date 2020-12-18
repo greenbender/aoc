@@ -22,17 +22,17 @@ def tokens(expr):
 
 
 def parse(expr, prec=''):
-    rpn, op = [], []
+    op = []
     for t in tokens(expr):
         if isinstance(t, int):
-            rpn.append(t)
+            yield t
         elif t in ops:
             while op:
                 if op[-1] == '(':
                     break
                 if prec.find(op[-1]) < prec.find(t):
                     break
-                rpn.append(op.pop())
+                yield op.pop()
             op.append(t)
         elif t == '(':
             op.append(t)
@@ -40,11 +40,10 @@ def parse(expr, prec=''):
             while op:
                 if op[-1] == '(':
                     break
-                rpn.append(op.pop())
+                yield op.pop()
             op.pop()
     while op:
-        rpn.append(op.pop())
-    return rpn
+        yield op.pop()
 
 
 def calc(expr, prec=''):
