@@ -1,0 +1,33 @@
+use stdin
+use sort
+
+
+calories = arrayof(0)
+
+
+s = Stdin()
+count = 0
+for line in s.lines() {
+    if line == "" {
+        calories.append(count)
+        count = 0
+    } else {
+        passed = false
+        value = line.toUint(typeof(0), passed)
+        if (passed) {
+            count += value
+        }
+    }
+}
+
+
+calories.sort()
+calories.reverse()
+
+
+// part1
+println calories[0]
+
+
+// part2
+println calories[0] + calories[1] + calories[2]

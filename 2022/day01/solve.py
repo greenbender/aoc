@@ -1,7 +1,9 @@
 import sys
 
 
-calories = [[int(c) for c in e.split("\n")] for e in sys.stdin.read().split("\n\n")]
+calories = [
+    [int(c) for c in e.split("\n")] for e in sys.stdin.read().strip().split("\n\n")
+]
 
 
 totals = [sum(d) for d in calories]
