@@ -1,15 +1,15 @@
 class Stdin(self) {
 
-    self.EOF = -1u8
-
     func readLine(self, var eof) {
         line = ""
         do {
+            /* readByte() can't tell EOF from an actual 0xff byte but it will
+             * do for now */
             c = readByte()
-        } while c != '\n' && c != self.EOF {
+        } while c != '\n' && c != -1u8 {
             line.append(c)
         }
-        eof = c == self.EOF
+        eof = c == -1u8
         return line
     }
 
