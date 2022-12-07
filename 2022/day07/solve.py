@@ -24,34 +24,32 @@ class Node:
             size += d.totalSize
         return size
 
+    @classmethod
+    def load(cls, fd):
+        root = node = cls("/")
+        for line in fd:
+            if line.startswith("$ cd"):
+                _, _, name = line.split()
+                if name == "/":
+                    node = root
+                elif name == "..":
+                    assert node and node.parent
+                    node = node.parent
+                else:
+                    assert node and name in node.dirs
+                    node = node.dirs[name]
+            elif line.startswith("$ ls"):
+                pass
+            elif line.startswith("dir"):
+                _, name = line.split()
+                node.dirs[name] = Node(name, parent=node)
+            else:
+                size, name = line.split()
+                node.files[name] = Node(name, size=int(size), parent=node)
+        return root
 
-def parse(line, node=None):
-    line = line.strip()
-    if line.startswith("$ cd"):
-        _, _, name = line.split()
-        if name == "/":
-            node = root
-        elif name == "..":
-            assert node and node.parent
-            node = node.parent
-        else:
-            assert node and name in node.dirs
-            node = node.dirs[name]
-    elif line.startswith("$ ls"):
-        pass
-    elif line.startswith("dir"):
-        _, name = line.split()
-        node.dirs[name] = Node(name, parent=node)
-    else:
-        size, name = line.split()
-        node.files[name] = Node(name, size=int(size), parent=node)
-    return node
 
-
-# parse the file system
-root = node = Node("/")
-for line in sys.stdin:
-    node = parse(line, node)
+root = Node.load(sys.stdin)
 
 
 # part 1
