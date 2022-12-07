@@ -33,10 +33,10 @@ class Node:
                 if name == "/":
                     node = root
                 elif name == "..":
-                    assert node and node.parent
+                    assert node.parent
                     node = node.parent
                 else:
-                    assert node and name in node.dirs
+                    assert name in node.dirs
                     node = node.dirs[name]
             elif line.startswith("$ ls"):
                 pass
