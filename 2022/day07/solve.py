@@ -53,18 +53,9 @@ root = Node.load(sys.stdin)
 
 
 # part 1
-total = 0
-for d in root.walk():
-    if d.totalSize <= 100000:
-        total += d.totalSize
-print(total)
+print(sum(d.totalSize for d in root.walk() if d.totalSize <= 100000))
 
 
 # part 2
-options = []
 free = 70000000 - root.totalSize
-for d in root.walk():
-    if free + d.totalSize >= 30000000:
-        options.append(d)
-options.sort(key=lambda d: d.totalSize)
-print(options[0].totalSize)
+print(min(d.totalSize for d in root.walk() if free + d.totalSize >= 30000000))
