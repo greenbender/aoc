@@ -19,16 +19,16 @@ games = [parse(line) for line in sys.stdin]
 
 
 def possible(subgames, red=12, green=13, blue=14):
-    for game in subgames:
-        if game["red"] > red or game["green"] > green or game["blue"] > blue:
+    for subgame in subgames:
+        if subgame["red"] > red or subgame["green"] > green or subgame["blue"] > blue:
             return False
     return True
 
 
 def power(subgames):
-    r = max(subgames["red"] for subgames in subgames)
-    g = max(subgames["green"] for subgames in subgames)
-    b = max(subgames["blue"] for subgames in subgames)
+    r = max(subgame["red"] for subgame in subgames)
+    g = max(subgame["green"] for subgame in subgames)
+    b = max(subgame["blue"] for subgame in subgames)
     return r * g * b
 
 
